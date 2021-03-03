@@ -1,0 +1,22 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Controller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sgalvao/SecApp.git"
+  },
+  "author": "Silvio Galvao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgalvao/SecApp/issues"
+  },
+  "homepage": "https://github.com/sgalvao/SecApp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
