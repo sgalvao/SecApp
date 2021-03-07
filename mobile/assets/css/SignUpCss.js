@@ -10,7 +10,7 @@ const css = StyleSheet.create ({
         justifyContent:'center',
         paddingHorizontal:30,
     
-    },
+    }, 
     modalViewContainer:{
         backgroundColor:'#fff',
         height:130,

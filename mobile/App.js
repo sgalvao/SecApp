@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Login, HomePage,SignUp} from './assets/index';
 import { StatusBar } from 'react-native';
-import {UserArea} from './View/UserArea';
+import UserArea from './View/UserArea';
 
 const Stack = createStackNavigator();
 

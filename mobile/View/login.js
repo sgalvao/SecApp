@@ -3,7 +3,6 @@ import {
   View, Text, TouchableOpacity, KeyboardAvoidingView,
   Image, TextInput, Platform, Animated, Keyboard} from 'react-native';
 import { css } from '../assets/css/LoginCss';
-import Modal from  'react-native-modal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as LocalAuthentication from 'expo-local-authentication';
 

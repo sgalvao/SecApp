@@ -6,19 +6,27 @@ import Modal from 'react-native-modal';
 
 
 export default function signUp({ navigation }) {
-
+    // FORMS STATES
     const [username,setUsername] = useState();
     const [password, setPassword] = useState();
     const [rePassword, setRePassword] = useState();
 
-    const [modalVisible, setModalVisible] = useState(false);
+    // MODAL STATES
+    const [modalTextError, setModalTextError] = useState();
+    const [modalError, setModalError] = useState(false);
+    const [modalSuccess, setModalSuccess] = useState(false);
 
     async function sendForm() {
         
         if (username === '' || password === '' || rePassword === ''){
+            setModalTextError('Preencha todos os campos!');
+            setModalError(true)
             return console.log('campos vazios')
         }
         if (password !== rePassword){
+            setModalTextError(" Senhas Incompatíveis!")
+            setModalError(true)
+
             return console.log('senhas incompatíveis')
         }
 
@@ -33,24 +41,30 @@ export default function signUp({ navigation }) {
             password,
             rePassword
             
-          })
-        }).then(res => res.json()).then(response => setModalVisible(true))
+          }),
+          
+        }).then(res => {
+             if (res.status === 400){
+             return (
+                 setModalTextError(" Usuário ja existe!"),
+                 setModalError(true)
+             )
+            }else setModalSuccess(true)
+        })
+           
 
     }
-      
-    
-
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={css.container}>
 
-            <Modal isVisible={modalVisible} style={css.modalContainer}>
+            <Modal isVisible={modalSuccess} style={css.modalContainer}>
                 <View  style={css.modalViewContainer}>
                     <Text style={css.modalText}>
-                        Cadastro efetuado com sucesso!
+                        Cadastro efetuado com Sucesso!
                     </Text>
                     <TouchableOpacity onPress={() => {
-                        setModalVisible(false)
+                        setModalSuccess(false)
                         navigation.navigate('Login')
                     }} style={css.modalButton}>
                         <Text style={{color:'#fff'}}>
@@ -59,8 +73,21 @@ export default function signUp({ navigation }) {
                     </TouchableOpacity>
                 </View>
             </Modal>
-
-
+            <Modal isVisible={modalError} style={css.modalContainer}>
+                <View  style={css.modalViewContainer}>
+                    <Text style={css.modalText}>
+                        {modalTextError}
+                    </Text>
+                    <TouchableOpacity onPress={() => {
+                        setModalError(false)
+                    }} style={css.modalButton}>
+                        <Text style={{color:'#fff'}}>
+                            Continuar
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+ 
             <View style={css.headingContainer}>
                 <Text style={css.headingTxt}>Register</Text>
             

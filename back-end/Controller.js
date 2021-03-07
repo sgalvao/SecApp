@@ -21,7 +21,7 @@ app.post('/register', async (req,res)=> {
     if (findUser) return res.status(400).json({ error: 'usuário ja existe' })
     
     const signUpUser = await user.create({username, password})
-    return res.json(signUpUser)
+    return res.status(201).json(signUpUser)
     
 })
 
